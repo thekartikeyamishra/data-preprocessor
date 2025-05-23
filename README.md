@@ -12,6 +12,24 @@ The primary goal of this module is to:
 
 This module is conceptualized as the second "microservice" in a series of modular Colab notebooks, typically following a "Data Loader & Validator" module.
 
+## UI Overview
+
+The module features an interactive UI to guide you through the preprocessing steps:
+
+**1. Configuration Sections:**
+After uploading your data and configuring column types, you can set parameters for imputation, encoding, and scaling.
+
+*(Image: `nn.PNG` provided by user)*
+![Preprocessing Configuration UI](assets/nn.PNG)
+*Caption: Configure Missing Value Imputation, Categorical Feature Encoding, and Numerical Feature Scaling.*
+
+**2. Apply & Download Section:**
+Once configured, you apply the transformations and can download the processed dataset. The status and a preview of the processed data are also displayed.
+
+*(Image: `zx.PNG` provided by user)*
+![Apply and Download UI](assets/zx.PNG)
+*Caption: Apply preprocessing steps and download the resulting CSV or Pickle file. Status messages and a preview are shown below.*
+
 ## Features
 
 * **Interactive CSV Upload:** Load the dataset to be preprocessed.
@@ -23,7 +41,7 @@ This module is conceptualized as the second "microservice" in a series of modula
     * Select specific categorical columns for encoding.
     * Choose between `One-Hot Encoding` or `Label Encoding`, or `None`.
 * **Numerical Scaling:**
-    * Select specific numerical columns for scaling (including those newly created by One-Hot Encoding).
+    * Select specific numerical columns for scaling (note: options here will update if One-Hot Encoding creates new numerical columns).
     * Choose between `StandardScaler` or `MinMaxScaler`, or `None`.
 * **Preview & Status:** View the head of the processed DataFrame and status messages.
 * **Download Processed Data:**
@@ -64,11 +82,11 @@ Preprocessing steps are applied in the following sequence:
     * A preview of the original data and auto-detected column types will appear.
 3.  **Configure Column Types (Section 2):**
     * Review the "Numerical Cols" and "Categorical Cols" selections. Adjust these `SelectMultiple` widgets if the auto-detection was not perfect for your specific needs.
-4.  **Configure Preprocessing Steps (Sections 3-5):**
-    * **Missing Value Imputation:** Choose your strategies for numerical and categorical columns. If 'constant' is chosen for categorical, specify the fill value.
-    * **Categorical Encoding:** Select the categorical columns you wish to encode and the method (`One-Hot Encode`, `Label Encode`, or `None`).
-    * **Numerical Scaling:** Select the numerical columns to scale (note: options here will update if One-Hot Encoding creates new numerical columns) and the scaling method.
-5.  **Apply Preprocessing (Section 6):**
+4.  **Configure Preprocessing Steps (Sections 3-5 - see UI Overview above):**
+    * **Missing Value Imputation:** Choose your strategies.
+    * **Categorical Encoding:** Select columns and method.
+    * **Numerical Scaling:** Select columns and method.
+5.  **Apply Preprocessing (Section 6 - see UI Overview above):**
     * Click the "Apply Preprocessing" button.
     * Status messages will appear in the main output area at the bottom.
     * A preview of the first 5 rows of the processed data will be shown.
@@ -96,4 +114,3 @@ As a conceptual module, improvements can be made directly within the Colab noteb
 3.  Commit your changes.
 4.  Push to the branch.
 5.  Open a Pull Request.
-
